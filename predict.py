@@ -41,6 +41,8 @@ def predict(labels_dir, songs_dir, filenames, writeto="./predictions/", use_proc
             res = align_wav_input(json_lyrics, wav_file)
             with open(writeto + filenames[i] + ".json", "w", encoding="utf8") as fout:
                 json.dump(res, fout, ensure_ascii=False)
+        except KeyboardInterrupt:
+            break
         except:
             print("==== [!] Error with alignment")
             with open(writeto + filenames[i] + ".json", "w", encoding="utf8") as fout:
