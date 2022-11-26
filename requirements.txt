@@ -6,7 +6,7 @@ musdb
 museval
 h5py
 tqdm
-torch==1.8.0+cu111
+torch
 torchaudio
 tensorboard
 sortedcontainers
@@ -14,3 +14,4 @@ youtube_dl
 g2p_en
 unidecode
 spleeter
+numba==0.55.0

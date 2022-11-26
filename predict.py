@@ -61,7 +61,7 @@ if __name__ == "__main__":
     results_dir = args.output[0] + "/"
 
     if not os.path.exists(results_dir):
-        os.makedirs(results_dir)
+        os.system(f"sudo mkdir {results_dir}")
     filenames = get_filenames(labels_dir)
 
     # preprocess audio
