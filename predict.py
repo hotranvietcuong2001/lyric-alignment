@@ -67,7 +67,7 @@ if __name__ == "__main__":
     filenames = get_filenames(labels_dir)
 
     # preprocess audio
-    preprocessed_dir = "./processed_audio/"
+    preprocessed_dir = "/code/processed_audio/"
     separate_vocals(songs_dir, filenames, preprocessed_dir)
 
     # predict
