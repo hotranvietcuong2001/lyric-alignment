@@ -4,6 +4,7 @@ from time import time
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import os
 
 import utils
 from model import train_audio_transforms, AcousticModel, BoundaryDetection
@@ -63,7 +64,8 @@ def align(audio, words, lyrics_p, idx_word_p, idx_line_p, method="Baseline", cud
 
     if state is None:
         print("Loading acoustic model from checkpoint...")
-        state = utils.load_model(ac_model, "/code/checkpoints/checkpoint_{}".format(model_type), cuda=(device=="gpu"))
+        checkpoint_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "./checkpoints/checkpoint_{}".format(model_type))
+        state = utils.load_model(ac_model, checkpoint_path, cuda=(device=="gpu"))
     ac_model.eval()
 
     # print("Computing phoneme posteriorgram...")
@@ -109,7 +111,8 @@ def align(audio, words, lyrics_p, idx_word_p, idx_line_p, method="Baseline", cud
         ).to(device)
         if state is None:
             print("Loading BDR model from checkpoint...")
-            state = utils.load_model(bdr_model, "/code/checkpoints/checkpoint_BDR", cuda=(device == "gpu"))
+            checkpoint_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "./checkpoints/checkpoint_BDR")
+            state = utils.load_model(bdr_model, checkpoint_path, cuda=(device == "gpu"))
         bdr_model.eval()
 
         # print("Computing boundary probability curve...")
