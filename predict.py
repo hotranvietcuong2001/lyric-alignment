@@ -67,7 +67,9 @@ if __name__ == "__main__":
     filenames = get_filenames(labels_dir)
 
     # preprocess audio
-    preprocessed_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "./processed_audio/")
+    preprocessed_dir = "/processed_audio/"
+    if not os.path.exists(preprocessed_dir):
+        os.makedirs(preprocessed_dir)
     separate_vocals(songs_dir, filenames, preprocessed_dir)
 
     # predict
